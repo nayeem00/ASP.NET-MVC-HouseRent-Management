@@ -1,0 +1,207 @@
+﻿@model HouseRentMVC.Post
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+<center>
+    <h2>Post Ad</h2>
+
+    @using (Html.BeginForm("Index", "PostAd", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset style="width: 40%">
+            <legend>Post</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HouseName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HouseName)
+                <div class="error">
+                    @Html.ValidationMessageFor(model => model.HouseName)
+                </div>
+               
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Address)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Address);
+                <div class="error">
+                    @Html.ValidationMessageFor(model => model.Address)
+                </div>
+               
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PhoneNumber)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PhoneNumber)
+                <div class="error">
+                    @Html.ValidationMessageFor(model => model.PhoneNumber)
+                </div>
+                
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Floor)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Floor)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AreaId,"Area")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.AreaId, (List<SelectListItem>)ViewBag.Arealist)
+            </div>
+
+            
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Bedroom)
+            </div>
+            <div class="editor-field">
+                            @{
+                                    List<SelectListItem> listItems = new List<SelectListItem>();
+                                    listItems.Add(new SelectListItem
+                                         {
+                                             Text = "1",
+                                             Value = "1",
+                                             Selected = true
+                                         });
+                                    listItems.Add(new SelectListItem
+                                         {
+                                             Text = "2",
+                                             Value = "2",
+                                             
+                                         });
+                                    listItems.Add(new SelectListItem
+                                         {
+                                             Text = "3",
+                                             Value = "3"
+                                         });
+                                         listItems.Add(new SelectListItem
+                                         {
+                                             Text = "4",
+                                             Value = "4"
+                                         });
+                                         listItems.Add(new SelectListItem
+                                         {
+                                             Text = "5",
+                                             Value = "5"
+                                         });
+                                         listItems.Add(new SelectListItem
+                                         {
+                                             Text = "6",
+                                             Value = "6"
+                                         });
+                                         
+                            }
+
+
+                @Html.DropDownListFor(model => model.Bedroom, listItems)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Dining)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Dining)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Drawing)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Drawing)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Kitchen)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Kitchen)
+            </div>
+
+            
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Category)
+            </div>
+            <div class="editor-field">
+
+                <td>
+                    <input type="checkbox" name="Category[]" value="Family" checked>Family
+                    <input type="checkbox" name="Category[]" value="Bachelor">Bachelor
+                    <input type="checkbox" name="Category[]" value="Office">Office
+                </td>
+
+            </div>
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Rent)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Rent)
+                <div class="error">
+                    @Html.ValidationMessageFor(model => model.Rent)
+                </div>
+                
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.RentStatus)
+            </div>
+            <div class="editor-field">
+                @Html.RadioButtonFor(model => model.RentStatus, "Fixed",new { @checked = true }) @Html.Label("Fixed") 
+                @Html.RadioButtonFor(model => model.RentStatus, "Negotiable") @Html.Label("Negotiable") 
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Additional)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Additional);
+            </div>
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Image)
+            </div>
+            <div class="editor-field">
+                &nbsp;<input type="file" name="FileUpload" />
+            </div>
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+
+
+    <div>
+        @Html.ActionLink("Back to Home", "Index", "Home")
+    </div>
+</center>

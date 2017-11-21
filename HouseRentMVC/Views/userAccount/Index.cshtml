@@ -1,0 +1,90 @@
+﻿@using HouseRentMVC.Controllers
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<center>
+    <h2>Your Account</h2><hr />
+    <label style="color:green" id="btnac"><a href="#">Active Post</a></label>
+    <label style="color:blue" id="btnInac"><a href="#">InActive Post</a></label><br />
+    <label style="color:forestgreen"> @ViewBag.message </label>
+    <hr />
+    <div id="Active" style="display:normal;">
+        <h3 id=" activepost">
+        Active Post</h3><hr>
+        <table cellpadding="15" cellspacing="20" border="1" rules="all">
+            @foreach (var item in (IEnumerable<mypost>)ViewBag.ActivePost)
+            {
+
+
+                <tr>
+
+                    <td>
+                        <a href="/postDetail/Index/@item.Id"><img src="/Images/@item.Image" width="40" height="40"></a>
+                    </td>
+
+                    <td>
+                        <b>Name:<a href="/postDetail/Index/@item.Id">@item.HouseName</a></b><br>
+                        Area:@item.AreaName
+                    </td>
+
+                    <td>
+                        <a href="/UserAccount/deletePost/@item.Id"><input type="Button" value="Delete"></a>
+                        <a href="/UserAccount/DisablePost/@item.Id"><input type="Button" value="Hired"></a>
+                    </td>
+
+                </tr>
+
+            }
+        </table>
+    </div>
+    
+    <div id="InActive" style="display: none;">
+        <h3 id="InActivePost">InActive Post</h3>
+        <hr>
+        <table cellpadding="15" cellspacing="20" border="1" rules="all">
+            @foreach (var item in (IEnumerable<mypost>)ViewBag.InActivePost)
+            {
+
+                <tr>
+
+                    <td>
+                        <a href="/postDetail/Index/@item.Id"><img src="/Images/@item.Image" width="40" height="40"></a>
+                    </td>
+
+                    <td>
+                        <b>Name:<a href="/postDetail/Index/@item.Id">@item.HouseName</a></b><br>
+                        Area:@item.AreaName
+                    </td>
+
+                    <td>
+                        <a href="/UserAccount/deletePost/@item.Id"><input type="Button" value="Delete"></a>
+                        <a href="/UserAccount/ActivatePost/@item.Id"><input type="Button" value="Available"></a>
+                    </td>
+
+                </tr>
+
+            }
+        </table>
+    </div>
+
+</center>
+
+<script type="text/javascript">
+    $(function(){
+
+        $('#btnInac').click(function () {
+            
+            $('#Active').hide();
+            $('#InActive').show();
+        });
+
+        $('#btnac').click(function () {
+
+            $('#InActive').hide();
+            $('#Active').Show();
+            
+        });
+    });
+</script>

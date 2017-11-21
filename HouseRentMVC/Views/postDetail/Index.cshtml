@@ -1,0 +1,82 @@
+﻿@using HouseRentMVC.Controllers
+@{
+    ViewBag.Title = "Index";
+}
+<center>
+    <h2>Post Detail</h2>
+
+    <table cellpadding="25" cellspacing="20" border="1" rules="all">
+        @foreach (var item in (IEnumerable<mypost>)ViewBag.Post)
+            {
+
+
+
+
+        <tr><td><img src="/Images/@item.Image" width="600" height="400"><br></td></tr>
+
+
+
+        <tr><td><b>@item.HouseName</b></td></tr>
+        <tr><td>Area:@item.AreaName<br></td></tr>
+        <tr><td>Detail: @item.Floor Floor,@item.Bedroom Bedrooms,@item.returnboolstat(@item.Dining) Dining,@item.returnboolstat(@item.Drawing) Drawing,@item.returnboolstat(@item.Kitchen) Kitchen<br></td></tr>
+        <tr><td>Address: @item.Address<br></td></tr>
+        <tr><td>Category: @item.Category <br></td></tr>
+        <tr><td>Additional Info: @item.Additinal<br></td></tr>
+        <tr><td>Rent:<b>@item.Rent BDT(@item.RentStatus)<br></b></td></tr>
+        <tr><td>Phone Number: <b>@item.PhoneNumber</b></td></tr>
+
+
+
+
+        }
+    </table>
+
+    <h2>Comment:</h2>
+    <table cellpadding="25" cellspacing="20" border="1" rules="all" width="52%">
+        @foreach (var item in (IEnumerable<myComment>)ViewBag.Comments)
+            {
+        <tr><td><b> @item.FullName (@item.Time): </b>@item.Comment</td></tr>
+        }
+    </table>
+    <br>
+    <form method="post">
+        <textarea name="comment" style="margin:0px; width:637px;  height: 73px"></textarea><br>
+        <input type="hidden" name="postid" value="@ViewBag.PostId" />
+        <input type="submit" name="CommentSubmit" value="Post Comment">
+    </form>
+
+
+    @if (ViewBag.SuggestPost != null)
+{
+    <h3>You May Also Like</h3>
+
+    <table cellpadding='25' cellspacing='20' border='1' rules='all'>
+        @foreach (var item in (IEnumerable<mypost>)ViewBag.SuggestPost)
+        {
+
+            <tr>
+
+                <td>
+                    <a href="/postDetail/Index/@item.Id"><img src="/Images/@item.Image" width="100" height="100"></a>
+                </td>
+
+                <td>
+                    <div><b>Name:<a href="/postDetail/Index/@item.Id">@item.HouseName</a></b> </div>
+                    <div>Area: @item.AreaName </div>
+                    @item.Floor Floor,@item.Bedroom Bedrooms,@item.returnboolstat(@item.Dining) Dining,@item.returnboolstat(@item.Drawing) Drawing,@item.returnboolstat(@item.Kitchen) Kitchen <br>
+                    Category: @item.Category <br>
+                    Rent:<b>@item.Rent BDT</b><br>Phone Number: <b>@item.PhoneNumber</b>
+                </td>
+
+            </tr>
+
+        }
+    </table>
+}
+
+
+
+
+
+
+</center>

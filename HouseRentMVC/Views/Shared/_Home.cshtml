@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+   
+    <link href="~/Contents/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Contents/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="~/Contents/jquery-ui.theme.min.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style >
+        .editor-label{
+            color:green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1><a href="/home"><img src="/Images/home.ico" width="32" height="32"></a>&nbsp HOUSE RENT</h1> <hr>
+
+
+
+        @{
+            if(Session["Login"]==null)
+            {
+                @Html.ActionLink("Login ", "Index","Login",null, new {style = "color:red"})
+            @Html.ActionLink("Registration", "Index", "Registration", null, new { style = "color:green" })
+             }
+            else
+            {
+                
+                if ((string)Session["user"] == "admin")
+                {
+                    
+                     @Html.ActionLink("LogOut(" + Session["FullName"] + ")", "Index", "Logout", null, new { style = "color:red" })
+                    @Html.ActionLink("Admin Panel", "Index", "AdminPanel", null, new { style = "color:green" })
+                    
+                }
+                else
+                {
+                    
+                     @Html.ActionLink("LogOut(" + Session["FullName"] + ")", "Index", "Logout", null, new { style = "color:red" })
+                    @Html.ActionLink("Your Account", "Index", "userAccount", null, new { style = "color:green" })
+                    
+                }
+                
+                    
+               
+
+            }
+            
+        }
+
+        <label><a href="/Postad">Post Ad </a></label>
+            
+
+        
+
+        <hr>
+    </center>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

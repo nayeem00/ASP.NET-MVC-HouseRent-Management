@@ -1,0 +1,47 @@
+﻿@model HouseRentMVC.Area
+
+@{
+    ViewBag.Title = "addarea";
+}
+<center>
+    <h2>Add New Area</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+    <fieldset style="width: 40%">
+        <legend>Area</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AreaName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AreaName)
+            <div class="error">
+                @Html.ValidationMessageFor(model => model.AreaName)
+            </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SurroundingArea)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SurroundingArea)
+            <div class="error">
+                @Html.ValidationMessageFor(model => model.SurroundingArea)
+            </div>
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</center>

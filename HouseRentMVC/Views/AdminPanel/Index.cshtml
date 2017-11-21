@@ -1,0 +1,166 @@
+﻿@using HouseRentMVC.Controllers
+@using HouseRentMVC
+
+@{
+    ViewBag.Title = "Index";
+}
+<center>
+    <h2>Admin Panel</h2><hr>
+
+    
+
+
+
+    <label><a href="/AdminPanel/report">Report</a></label> |
+    <label><a href="#ApprovedPost">Approved Post</a></label> |
+    <label><a href="#pendingPost">Pending Post</a></label> |
+    <label><a href="#Area">Area</a></label> |
+    <label><a href="#Admin">Admin</a></label> |
+    <label><a href="#User">User</a></label><br />
+    <label style="color:forestgreen"> @ViewBag.Message </label><br /><hr />
+
+
+
+    <h3 id="ApprovedPost">Approved Post</h3>
+    <hr>
+    <table cellpadding="15" cellspacing="20" border="1" rules="all">
+        @foreach (var item in (IEnumerable<mypost>)ViewBag.Approved)
+            {
+
+        <tr>
+
+                    <td>
+                        <a href="/postDetail/Index/@item.Id"><img src="/Images/@item.Image" width="40" height="40"></a>
+                    </td>
+
+                    <td>
+                        <b>Name:<a href="/postDetail/Index/@item.Id">@item.HouseName</a></b><br>
+                        Area:@item.AreaName
+                    </td>
+
+            <td>
+                <a href="AdminPanel/deletePost/@item.Id"><input type="Button" value="Delete"></a>
+            </td>
+
+        </tr>
+
+        }
+    </table>
+
+
+
+    <h3 id="pendingPost">Pending Post</h3>
+    <hr>
+    <table cellpadding="15" cellspacing="20" border="1" rules="all">
+        @foreach (var item in (IEnumerable<mypost>)ViewBag.Pending)
+            {
+
+    <tr>
+
+        <td>
+            <a href="/postDetail/Index/@item.Id"><img src="/Images/@item.Image" width="40" height="40"></a>
+        </td>
+
+        <td>
+            <b>Name:<a href="/postDetail/Index/@item.Id">@item.HouseName</a></b><br>
+            Area:@item.AreaName
+        </td>
+
+        <td>
+            <a href="AdminPanel/deletePost/@item.Id"><input type="Button" value="Delete"></a>
+            <a href="AdminPanel/approvePost/@item.Id"><input type="Button" value="Appove"></a>
+        </td>
+
+    </tr>
+
+        }
+    </table>
+
+
+
+
+    <h3 id="Area">Area<a href="/AdminPanel/addarea"><input type="Button" value="Add"></a></h3>
+    <hr>
+    <table cellpadding="15" cellspacing="20" border="1" rules="all">
+
+        <thead>
+        <td>Name</td>
+        <td>Action</td>
+        </thead>
+        @foreach (var item in (IEnumerable<Area>)ViewBag.area)
+            {
+
+        <tr>
+
+            <td>@item.AreaName</td>
+            <td>
+                <a href="/AdminPanel/deleteArea/@item.Id"><input type="Button" value="Delete"></a>
+                
+            </td>
+        </tr>
+
+
+        }
+    </table>
+
+
+
+
+
+
+    <h3 id="Admin">Admin</h3>
+    <hr>
+    <table cellpadding="15" cellspacing="20" border="1" rules="all">
+        <thead>
+        <td>Full Name</td>
+        <td>User Name</td>
+        <td>Phone Number</td>
+        </thead>
+        @foreach (var item in (IEnumerable<User>)ViewBag.Admin)
+            {
+
+        <tr>
+
+            <td>@item.FullName</td>
+            <td>@item.Username</td>
+            <td>@item.PhoneNumber</td>
+
+        </tr>
+
+        }
+    </table>
+
+
+ 
+
+    <h3 id="User">User</h3>
+    <hr>
+    <table cellpadding="15" cellspacing="20" border="1" rules="all">
+        <thead>
+        <td>Full Name</td>
+        <td>User Name</td>
+        <td>Phone Number</td>
+        <td>Action</td>
+        </thead>
+        @foreach (var item in (IEnumerable<User>)ViewBag.User)
+            {
+
+        <tr>
+
+            <td>@item.FullName</td>
+            <td>@item.Username</td>
+            <td>@item.PhoneNumber</td>
+            <td>
+                <a href="/AdminPanel/deleteUser/@item.Id"><input type="Button" value="Delete"></a>
+                <a href="/AdminPanel/MakeAdmin/@item.Id"><input type="Button" value="Make Admin"></a>
+            </td>
+
+        </tr>
+
+        }
+    </table>
+
+
+
+</center>
+

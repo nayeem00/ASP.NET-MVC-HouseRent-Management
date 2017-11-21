@@ -1,0 +1,84 @@
+﻿@model HouseRentMVC.User
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+<center>
+    <h2>Registration</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+    <fieldset style="width: 40%">
+        <legend>User</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Username)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Username)
+            <div class="error">
+                @Html.ValidationMessageFor(model => model.Username)
+            </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Password)
+            <div class="error">
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+       </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.ConfirmPassword)
+            <div class="error">
+                @Html.ValidationMessageFor(model => model.ConfirmPassword)
+            </div>
+            
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FullName)
+            <div class="error">
+                @Html.ValidationMessageFor(model => model.FullName)
+            </div>
+
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            <div class="error">
+                @Html.ValidationMessageFor(model => model.PhoneNumber)
+            </div>
+            
+        </div>
+
+       
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+
+    }
+    <label style="color:red">@ViewBag.messege </label>
+    <div>
+        @Html.ActionLink("Back to Home", "Index","Home")
+    </div>
+</center>
